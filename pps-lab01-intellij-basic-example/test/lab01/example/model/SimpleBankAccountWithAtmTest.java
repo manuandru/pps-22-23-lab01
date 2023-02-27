@@ -18,24 +18,27 @@ class SimpleBankAccountWithAtmTest extends BankAccountTest {
     @Override
     void testDeposit() {
         super.testDeposit();
-
+        assertEquals(99, bankAccount.getBalance());
     }
 
     @Test
     @Override
     void testWrongDeposit() {
         super.testWrongDeposit();
+        assertEquals(AMOUNT - SimpleBankAccountWithAtm.ATM_FEE, bankAccount.getBalance());
     }
 
     @Test
     @Override
     void testWithdraw() {
         super.testWithdraw();
+        assertEquals(28, bankAccount.getBalance());
     }
 
     @Test
     @Override
     void testWrongWithdraw() {
         super.testWrongWithdraw();
+        assertEquals(AMOUNT - SimpleBankAccountWithAtm.ATM_FEE, bankAccount.getBalance());
     }
 }

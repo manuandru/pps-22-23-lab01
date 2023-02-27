@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public abstract class BankAccountTest {
 
+    public static final int AMOUNT = 100;
     protected AccountHolder accountHolder;
     protected BankAccount bankAccount;
 
@@ -23,13 +24,15 @@ public abstract class BankAccountTest {
 
     @Test
     void testDeposit() {
-        bankAccount.deposit(accountHolder.getId(), 100);
+        bankAccount.deposit(accountHolder.getId(), AMOUNT);
     }
 
     @Test
     void testWrongDeposit() {
-        bankAccount.deposit(accountHolder.getId(), 100);
-        bankAccount.deposit(2, 50);
+        final double anotherAmount = 50;
+        final int wrongUserId = 50;
+        bankAccount.deposit(accountHolder.getId(), AMOUNT);
+        bankAccount.deposit(wrongUserId, anotherAmount);
     }
 
     @Test
