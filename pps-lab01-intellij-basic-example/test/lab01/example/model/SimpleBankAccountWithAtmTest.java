@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static lab01.example.model.SimpleBankAccountWithAtm.ATM_FEE;
 
 class SimpleBankAccountWithAtmTest extends BankAccountTest {
 
@@ -18,27 +19,28 @@ class SimpleBankAccountWithAtmTest extends BankAccountTest {
     @Override
     void testDeposit() {
         super.testDeposit();
-        assertEquals(99, bankAccount.getBalance());
+        assertEquals(DEPOSIT_AMOUNT - ATM_FEE, bankAccount.getBalance());
     }
 
     @Test
     @Override
     void testWrongDeposit() {
         super.testWrongDeposit();
-        assertEquals(AMOUNT - SimpleBankAccountWithAtm.ATM_FEE, bankAccount.getBalance());
+        assertEquals(DEPOSIT_AMOUNT - ATM_FEE, bankAccount.getBalance());
     }
 
     @Test
     @Override
     void testWithdraw() {
         super.testWithdraw();
-        assertEquals(28, bankAccount.getBalance());
+        final double expected = DEPOSIT_AMOUNT - WITHDRAW_AMOUNT - 2*ATM_FEE;
+        assertEquals(expected, bankAccount.getBalance());
     }
 
     @Test
     @Override
     void testWrongWithdraw() {
         super.testWrongWithdraw();
-        assertEquals(AMOUNT - SimpleBankAccountWithAtm.ATM_FEE, bankAccount.getBalance());
+        assertEquals(DEPOSIT_AMOUNT - ATM_FEE, bankAccount.getBalance());
     }
 }

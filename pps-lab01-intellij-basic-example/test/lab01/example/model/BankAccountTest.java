@@ -7,7 +7,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public abstract class BankAccountTest {
 
-    public static final int AMOUNT = 100;
+    public static final int DEPOSIT_AMOUNT = 100;
+    public static final int WITHDRAW_AMOUNT = 70;
     protected AccountHolder accountHolder;
     protected BankAccount bankAccount;
 
@@ -24,27 +25,28 @@ public abstract class BankAccountTest {
 
     @Test
     void testDeposit() {
-        bankAccount.deposit(accountHolder.getId(), AMOUNT);
+        bankAccount.deposit(accountHolder.getId(), DEPOSIT_AMOUNT);
     }
 
     @Test
     void testWrongDeposit() {
         final double anotherAmount = 50;
-        final int wrongUserId = 50;
-        bankAccount.deposit(accountHolder.getId(), AMOUNT);
+        final int wrongUserId = 2;
+        bankAccount.deposit(accountHolder.getId(), DEPOSIT_AMOUNT);
         bankAccount.deposit(wrongUserId, anotherAmount);
     }
 
     @Test
     void testWithdraw() {
-        bankAccount.deposit(accountHolder.getId(), 100);
-        bankAccount.withdraw(accountHolder.getId(), 70);
+        bankAccount.deposit(accountHolder.getId(), DEPOSIT_AMOUNT);
+        bankAccount.withdraw(accountHolder.getId(), WITHDRAW_AMOUNT);
     }
 
     @Test
     void testWrongWithdraw() {
-        bankAccount.deposit(accountHolder.getId(), 100);
-        bankAccount.withdraw(2, 70);
+        final int wrongUserId = 2;
+        bankAccount.deposit(accountHolder.getId(), DEPOSIT_AMOUNT);
+        bankAccount.withdraw(wrongUserId, WITHDRAW_AMOUNT);
     }
 
 }
