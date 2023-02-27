@@ -23,6 +23,13 @@ class SimpleBankAccountWithAtmTest extends BankAccountTest {
     }
 
     @Test
+    void testAvoidDepositLessThanFees() {
+        bankAccount.deposit(accountHolder.getId(), DEPOSIT_AMOUNT);
+        bankAccount.deposit(accountHolder.getId(), 0);
+        assertEquals(DEPOSIT_AMOUNT - ATM_FEE, bankAccount.getBalance());
+    }
+
+    @Test
     @Override
     void testWrongDeposit() {
         super.testWrongDeposit();

@@ -23,8 +23,7 @@ public class SimpleBankAccountWithAtm implements BankAccount {
 
     @Override
     public void deposit(int userID, double amount) {
-//        if (checkUser(userID) && amount > ATM_FEE) {
-        if (checkUser(userID)) {
+        if (checkUser(userID) && amount > ATM_FEE) {
             this.balance += amount;
             this.balance -= ATM_FEE;
         }
