@@ -11,6 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CircularListTest {
 
     private static final int ONE = 1;
+    private static final int TWO = 2;
+    private static final int THREE = 3;
     private CircularList list;
 
     @BeforeEach
@@ -27,6 +29,14 @@ public class CircularListTest {
     void testNotEmptyIfAdd() {
         list.add(ONE);
         assertFalse(list.isEmpty());
+    }
+
+    @Test
+    void testMultipleAdd() {
+        list.add(ONE);
+        list.add(TWO);
+        list.add(THREE);
+        assertEquals(3, list.size());
     }
 
 }
