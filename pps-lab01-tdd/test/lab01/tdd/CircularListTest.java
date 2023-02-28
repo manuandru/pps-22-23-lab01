@@ -78,6 +78,15 @@ public class CircularListTest {
         assertEquals(Optional.of(TWO), list.previous());
     }
 
+    @Test
+    void testResetList() {
+        addElements();
+        list.next();
+        list.next();
+        list.reset();
+        assertEquals(Optional.of(ONE), list.next());
+    }
+
     private void addElements() {
         list.add(ONE);
         list.add(TWO);

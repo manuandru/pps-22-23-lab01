@@ -6,6 +6,7 @@ import java.util.Optional;
 
 public class CircularListImpl implements CircularList {
 
+
     private final List<Integer> list = new ArrayList<>();
     private int position = -1;
 
@@ -44,6 +45,6 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public void reset() {
-
+        this.position = -1;
     }
 }
