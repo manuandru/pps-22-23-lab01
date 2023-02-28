@@ -20,27 +20,27 @@ class SimpleBankAccountTest extends BankAccountTest {
     @Override
     void testDeposit() {
         super.testDeposit();
-        assertEquals(100, bankAccount.getBalance());
+        assertEquals(DEPOSIT_AMOUNT, bankAccount.getBalance());
     }
 
     @Test
     @Override
     void testWrongDeposit() {
         super.testWrongDeposit();
-        assertEquals(100, bankAccount.getBalance());
+        assertEquals(DEPOSIT_AMOUNT, bankAccount.getBalance());
     }
 
     @Test
     @Override
     void testWithdraw() {
         super.testWithdraw();
-        assertEquals(30, bankAccount.getBalance());
+        assertEquals(DEPOSIT_AMOUNT - WITHDRAW_AMOUNT, bankAccount.getBalance());
     }
 
     @Test
     @Override
     void testWrongWithdraw() {
         super.testWrongWithdraw();
-        assertEquals(100, bankAccount.getBalance());
+        assertEquals(DEPOSIT_AMOUNT, bankAccount.getBalance());
     }
 }

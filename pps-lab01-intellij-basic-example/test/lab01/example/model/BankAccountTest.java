@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public abstract class BankAccountTest {
 
-    public static final int DEPOSIT_AMOUNT = 100;
-    public static final int WITHDRAW_AMOUNT = 70;
+    protected static final int DEPOSIT_AMOUNT = 100;
+    protected static final int WITHDRAW_AMOUNT = 70;
     protected AccountHolder accountHolder;
     protected BankAccount bankAccount;
 
