@@ -35,6 +35,7 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Optional<Integer> previous() {
+        this.position--;
         if (this.position < 0) {
             this.position = list.size() - 1;
         }

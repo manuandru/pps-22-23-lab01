@@ -75,4 +75,14 @@ public class CircularListTest {
         assertEquals(Optional.of(THREE), list.previous());
     }
 
+    @Test
+    void testMixedForwardAndBackward() {
+        list.add(ONE);
+        list.add(TWO);
+        list.add(THREE);
+        list.next();
+        list.next();
+        list.next();
+        assertEquals(Optional.of(TWO), list.previous());
+    }
 }
