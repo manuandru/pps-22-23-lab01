@@ -35,9 +35,7 @@ public class CircularListTest {
 
     @Test
     void testMultipleAdd() {
-        list.add(ONE);
-        list.add(TWO);
-        list.add(THREE);
+        addElements();
         assertEquals(3, list.size());
     }
 
@@ -55,9 +53,7 @@ public class CircularListTest {
 
     @Test
     void testForwardCircularity() {
-        list.add(ONE);
-        list.add(TWO);
-        list.add(THREE);
+        addElements();
         list.next();
         list.next();
         list.next();
@@ -66,9 +62,7 @@ public class CircularListTest {
 
     @Test
     void testBackwardCircularity() {
-        list.add(ONE);
-        list.add(TWO);
-        list.add(THREE);
+        addElements();
         list.previous();
         list.previous();
         list.previous();
@@ -77,12 +71,17 @@ public class CircularListTest {
 
     @Test
     void testMixedForwardAndBackward() {
-        list.add(ONE);
-        list.add(TWO);
-        list.add(THREE);
+        addElements();
         list.next();
         list.next();
         list.next();
         assertEquals(Optional.of(TWO), list.previous());
     }
+
+    private void addElements() {
+        list.add(ONE);
+        list.add(TWO);
+        list.add(THREE);
+    }
+
 }
