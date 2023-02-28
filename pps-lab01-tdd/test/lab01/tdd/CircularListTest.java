@@ -3,6 +3,8 @@ package lab01.tdd;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -39,4 +41,9 @@ public class CircularListTest {
         assertEquals(3, list.size());
     }
 
+    @Test
+    void testForward() {
+        list.add(ONE);
+        assertEquals(Optional.of(ONE), list.next());
+    }
 }
