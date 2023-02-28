@@ -32,7 +32,10 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Optional<Integer> previous() {
-        return Optional.empty();
+        if (this.counter < 0) {
+            this.counter = list.size() - 1;
+        }
+        return Optional.of(list.get(this.counter));
     }
 
     @Override
