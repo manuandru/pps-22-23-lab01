@@ -7,8 +7,9 @@ import java.util.Optional;
 public class CircularListImpl implements CircularList {
 
 
+    private static final int INITIAL_POSITION = -1;
     private final List<Integer> list = new ArrayList<>();
-    private int position = -1;
+    private int position = INITIAL_POSITION;
 
     @Override
     public void add(int element) {
@@ -45,6 +46,6 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public void reset() {
-        this.position = -1;
+        this.position = INITIAL_POSITION;
     }
 }
