@@ -52,4 +52,15 @@ public class CircularListTest {
         list.add(ONE);
         assertEquals(Optional.of(ONE), list.previous());
     }
+
+    @Test
+    void testForwardCircularity() {
+        list.add(ONE);
+        list.add(TWO);
+        list.add(THREE);
+        list.next();
+        list.next();
+        list.next();
+        assertEquals(Optional.of(ONE), list.next());
+    }
 }
