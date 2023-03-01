@@ -38,9 +38,12 @@ public class CircularListTest {
     }
 
     @Test
-    void testForward() {
+    void testForwardCircularity() {
         list.add(1);
-        Iterator<Integer> iterator = list.forwardIterator();
-        assertEquals(1, iterator.next());
+        list.add(2);
+        Iterator<Integer> forwardIterator = list.forwardIterator();
+        assertEquals(1, forwardIterator.next());
+        assertEquals(2, forwardIterator.next());
+        assertEquals(1, forwardIterator.next());
     }
 }

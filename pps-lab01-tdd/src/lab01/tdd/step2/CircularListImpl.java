@@ -1,8 +1,8 @@
 package lab01.tdd.step2;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class CircularListImpl implements CircularList {
 
@@ -20,7 +20,13 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Iterator<Integer> forwardIterator() {
-        return list.listIterator();
+        if (this.isEmpty()) {
+            return IntStream.empty().iterator();
+        }
+        return Stream.generate(() -> list)
+                .flatMap(Collection::stream)
+                .iterator();
+
     }
 
     @Override
