@@ -8,6 +8,9 @@ import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The test suite for testing the CircularList implementation with filter
+ */
 class CircularListTest {
 
     private static final Integer ONE = 1;
