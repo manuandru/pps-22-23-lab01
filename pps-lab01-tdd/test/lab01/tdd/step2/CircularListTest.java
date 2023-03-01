@@ -37,4 +37,10 @@ public class CircularListTest {
         assertFalse(backwardIterator.hasNext());
     }
 
+    @Test
+    void testForward() {
+        list.add(1);
+        Iterator<Integer> iterator = list.forwardIterator();
+        assertEquals(1, iterator.next());
+    }
 }
