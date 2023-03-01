@@ -20,26 +20,24 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Iterator<Integer> forwardIterator() {
-        if (this.isEmpty()) {
-            return IntStream.empty().iterator();
-        }
-        List<Integer> copy = new ArrayList<>(list);
-        return Stream.generate(() -> copy)
-                .flatMap(Collection::stream)
-                .iterator();
+        List<Integer> copy = new ArrayList<>(this.list);
+        return this.getIterator(copy);
 
     }
 
     @Override
     public Iterator<Integer> backwardIterator() {
-        if (this.isEmpty()) {
-            return IntStream.empty().iterator();
-        }
-        List<Integer> reversed = new ArrayList<>(list);
-        Collections.reverse(reversed);
-        return Stream.generate(() -> reversed)
-                .flatMap(Collection::stream)
-                .iterator();
+        List<Integer> copy = new ArrayList<>(this.list);
+        Collections.reverse(copy);
+        return this.getIterator(copy);
 
+    }
+
+    private Iterator<Integer> getIterator(List<Integer> list) {
+        return list.isEmpty() ?
+                IntStream.empty().iterator()
+                : Stream.generate(() -> list)
+                        .flatMap(Collection::stream)
+                        .iterator();
     }
 }
