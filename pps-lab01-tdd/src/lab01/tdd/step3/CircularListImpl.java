@@ -1,28 +1,42 @@
 package lab01.tdd.step3;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public class CircularListImpl implements CircularList {
 
-    private final List<Integer> list = new ArrayList<>();
+    private List<Integer> previousElement = new ArrayList<>();
+    private List<Integer> nextElement = new ArrayList<>();
 
     @Override
     public boolean isEmpty() {
-        return list.size() == 0;
+        return stream().toList().size() == 0;
     }
 
     @Override
     public void add(int element) {
-        list.add(element);
+        nextElement.add(element);
     }
 
     @Override
     public Optional<Integer> filteredNext(Predicate<Integer> predicate) {
-        return list.stream()
-                .filter(predicate)
-                .findFirst();
+        var it = stream().iterator();
+        previousElement = new ArrayList<>();
+        nextElement = new ArrayList<>();
+        while (it.hasNext()) {
+            var element = it.next();
+            previousElement.add(element);
+            if (predicate.test(element)) {
+                it.forEachRemaining(nextElement::add);
+                return Optional.of(element);
+            }
+        }
+        return Optional.empty();
+    }
+
+    private Stream<Integer> stream() {
+        return Stream.of(nextElement, previousElement)
+                .flatMap(Collection::stream);
     }
 }

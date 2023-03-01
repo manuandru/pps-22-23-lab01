@@ -4,14 +4,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CircularListTest {
 
-    private static final int ONE = 1;
-    private static final int TWO = 2;
-    private static final int THREE = 3;
+    private static final Integer ONE = 1;
+    private static final Integer TWO = 2;
+    private static final Integer THREE = 3;
     private CircularList list;
     @BeforeEach
     void setUp() {
@@ -32,20 +33,31 @@ class CircularListTest {
     @Test
     void testFindElement() {
         addElements();
-        assertEquals(Optional.of(TWO), list.filteredNext(e -> e.equals(TWO)));
+        assertEquals(Optional.of(TWO), list.filteredNext(TWO::equals));
     }
 
     @Test
     void testUnsatisfiedCondition() {
         list.add(ONE);
-        assertEquals(Optional.empty(), list.filteredNext(e -> e.equals(TWO)));
+        assertEquals(Optional.empty(), list.filteredNext(TWO::equals));
     }
 
     @Test
     void testFindElementCircularly() {
         addElements();
         list.filteredNext(e -> e.equals(TWO));
-        assertEquals(Optional.of(TWO), list.filteredNext(e -> e.equals(TWO)));
+        assertEquals(Optional.of(TWO), list.filteredNext(TWO::equals));
+    }
+
+    @Test
+    void testGetCorrectNext() {
+        list.add(ONE);
+        list.add(TWO);
+        list.add(THREE);
+        list.add(TWO);
+        list.filteredNext(TWO::equals);
+        Predicate<Integer> predicateToGetThree = e -> e.equals(3) || e.equals(2);
+        assertEquals(Optional.of(3), list.filteredNext(predicateToGetThree));
     }
 
     private void addElements() {
