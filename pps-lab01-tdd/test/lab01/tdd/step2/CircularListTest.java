@@ -14,6 +14,7 @@ public class CircularListTest {
 
     public static final int ONE = 1;
     public static final int TWO = 2;
+    public static final int THREE = 3;
     CircularList list;
     @BeforeEach
     void setUp() {
@@ -57,8 +58,18 @@ public class CircularListTest {
         assertEquals(TWO, backwardIterator.next());
     }
 
+    @Test
+    void testIteratorIsImmutable() {
+        addElements();
+        Iterator<Integer> iterator = list.forwardIterator();
+        list.add(THREE);
+        assertEquals(ONE, iterator.next());
+        assertEquals(TWO, iterator.next());
+        assertEquals(ONE, iterator.next());
+    }
+
     private void addElements() {
-        list.add(1);
-        list.add(2);
+        list.add(ONE);
+        list.add(TWO);
     }
 }

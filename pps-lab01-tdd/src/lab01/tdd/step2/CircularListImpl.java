@@ -23,7 +23,8 @@ public class CircularListImpl implements CircularList {
         if (this.isEmpty()) {
             return IntStream.empty().iterator();
         }
-        return Stream.generate(() -> list)
+        List<Integer> copy = new ArrayList<>(list);
+        return Stream.generate(() -> copy)
                 .flatMap(Collection::stream)
                 .iterator();
 
