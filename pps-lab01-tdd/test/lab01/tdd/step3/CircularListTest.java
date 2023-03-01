@@ -48,7 +48,7 @@ class CircularListTest {
     @Test
     void testFindElementCircularly() {
         addElements();
-        list.filteredNext(e -> e.equals(TWO));
+        list.filteredNext(TWO::equals);
         assertEquals(Optional.of(TWO), list.filteredNext(TWO::equals));
     }
 
