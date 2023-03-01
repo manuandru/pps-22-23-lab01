@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class CircularListTest {
 
-    public static final int ONE = 1;
-    public static final int TWO = 2;
-    public static final int THREE = 3;
+    private static final int ONE = 1;
+    private static final int TWO = 2;
+    private static final int THREE = 3;
     CircularList list;
     @BeforeEach
     void setUp() {
