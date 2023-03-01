@@ -9,6 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CircularListTest {
 
+    private static final int ONE = 1;
+    private static final int TWO = 2;
+    private static final int THREE = 3;
     private CircularList list;
     @BeforeEach
     void setUp() {
@@ -22,31 +25,33 @@ class CircularListTest {
 
     @Test
     void testNotEmptyIfAdd() {
-        list.add(1);
+        list.add(ONE);
         assertFalse(list.isEmpty());
     }
 
     @Test
     void testFindElement() {
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        assertEquals(Optional.of(2), list.filteredNext(e -> e.equals(2)));
+        addElements();
+        assertEquals(Optional.of(TWO), list.filteredNext(e -> e.equals(TWO)));
     }
 
     @Test
     void testUnsatisfiedCondition() {
-        list.add(1);
-        assertEquals(Optional.empty(), list.filteredNext(e -> e.equals(2)));
+        list.add(ONE);
+        assertEquals(Optional.empty(), list.filteredNext(e -> e.equals(TWO)));
     }
 
     @Test
     void testFindElementCircularly() {
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.filteredNext(e -> e.equals(2));
-        assertEquals(Optional.of(2), list.filteredNext(e -> e.equals(2)));
+        addElements();
+        list.filteredNext(e -> e.equals(TWO));
+        assertEquals(Optional.of(TWO), list.filteredNext(e -> e.equals(TWO)));
+    }
+
+    private void addElements() {
+        list.add(ONE);
+        list.add(TWO);
+        list.add(THREE);
     }
 
 }
