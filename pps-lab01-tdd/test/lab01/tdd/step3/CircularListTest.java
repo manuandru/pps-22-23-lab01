@@ -33,4 +33,13 @@ class CircularListTest {
         list.add(3);
         assertEquals(Optional.of(2), list.filteredNext(e -> e.equals(2)));
     }
+
+    @Test
+    void testFindElementCircularly() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.filteredNext(e -> e.equals(2));
+        assertEquals(Optional.of(2), list.filteredNext(e -> e.equals(2)));
+    }
 }
