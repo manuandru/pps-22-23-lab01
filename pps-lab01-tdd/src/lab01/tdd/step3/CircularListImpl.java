@@ -2,6 +2,8 @@ package lab01.tdd.step3;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 public class CircularListImpl implements CircularList {
 
@@ -15,5 +17,12 @@ public class CircularListImpl implements CircularList {
     @Override
     public void add(int element) {
         list.add(element);
+    }
+
+    @Override
+    public Optional<Integer> filteredNext(Predicate<Integer> predicate) {
+        return list.stream()
+                .filter(predicate)
+                .findFirst();
     }
 }
