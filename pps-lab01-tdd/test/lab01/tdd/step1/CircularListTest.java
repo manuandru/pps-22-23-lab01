@@ -34,6 +34,12 @@ public class CircularListTest {
     }
 
     @Test
+    void testIteratorOnEmptyList() {
+        assertEquals(Optional.empty(), list.next());
+        assertEquals(Optional.empty(), list.previous());
+    }
+
+    @Test
     void testMultipleAdd() {
         addElements();
         assertEquals(3, list.size());

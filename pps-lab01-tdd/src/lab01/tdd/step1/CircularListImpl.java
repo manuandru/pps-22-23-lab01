@@ -6,7 +6,6 @@ import java.util.Optional;
 
 public class CircularListImpl implements CircularList {
 
-
     private static final int INITIAL_POSITION = -1;
     private final List<Integer> list = new ArrayList<>();
     private int position = INITIAL_POSITION;
@@ -28,6 +27,9 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Optional<Integer> next() {
+        if (this.isEmpty()) {
+            return Optional.empty();
+        }
         this.position++;
         if (this.position >= list.size()) {
             this.position = 0;
@@ -37,6 +39,9 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Optional<Integer> previous() {
+        if (this.isEmpty()) {
+            return Optional.empty();
+        }
         this.position--;
         if (this.position < 0) {
             this.position = list.size() - 1;
