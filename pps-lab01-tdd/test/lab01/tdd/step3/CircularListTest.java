@@ -56,8 +56,8 @@ class CircularListTest {
         list.add(THREE);
         list.add(TWO);
         list.filteredNext(TWO::equals);
-        Predicate<Integer> predicateToGetThree = e -> e.equals(3) || e.equals(2);
-        assertEquals(Optional.of(3), list.filteredNext(predicateToGetThree));
+        Predicate<Integer> predicateToGetThree = e -> e.equals(THREE) || e.equals(TWO);
+        assertEquals(Optional.of(THREE), list.filteredNext(predicateToGetThree));
     }
 
     private void addElements() {
