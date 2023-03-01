@@ -31,6 +31,14 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Iterator<Integer> backwardIterator() {
-        return list.listIterator();
+        if (this.isEmpty()) {
+            return IntStream.empty().iterator();
+        }
+        List<Integer> reversed = new ArrayList<>(list);
+        Collections.reverse(reversed);
+        return Stream.generate(() -> reversed)
+                .flatMap(Collection::stream)
+                .iterator();
+
     }
 }
