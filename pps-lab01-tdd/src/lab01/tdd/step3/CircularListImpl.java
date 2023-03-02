@@ -6,8 +6,8 @@ import java.util.stream.Stream;
 
 public class CircularListImpl implements CircularList {
 
-    private List<Integer> previousElement = new ArrayList<>();
-    private List<Integer> nextElement = new ArrayList<>();
+    private List<Integer> previousElements = new ArrayList<>();
+    private List<Integer> nextElements = new ArrayList<>();
 
     @Override
     public boolean isEmpty() {
@@ -16,19 +16,19 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public void add(int element) {
-        nextElement.add(element);
+        nextElements.add(element);
     }
 
     @Override
     public Optional<Integer> filteredNext(Predicate<Integer> predicate) {
         var it = stream().iterator();
-        previousElement = new ArrayList<>();
-        nextElement = new ArrayList<>();
+        previousElements = new ArrayList<>();
+        nextElements = new ArrayList<>();
         while (it.hasNext()) {
             var element = it.next();
-            previousElement.add(element);
+            previousElements.add(element);
             if (predicate.test(element)) {
-                it.forEachRemaining(nextElement::add);
+                it.forEachRemaining(nextElements::add);
                 return Optional.of(element);
             }
         }
@@ -36,7 +36,7 @@ public class CircularListImpl implements CircularList {
     }
 
     private Stream<Integer> stream() {
-        return Stream.of(nextElement, previousElement)
+        return Stream.of(nextElements, previousElements)
                 .flatMap(Collection::stream);
     }
 }
